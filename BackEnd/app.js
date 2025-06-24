@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(express.json());
 
 app.use(cors({
-    origin:process.env.FRONTEND_LINK,
+    origin:"https://cost-trackerf.onrender.com",
     credentials:true
 }))
 
