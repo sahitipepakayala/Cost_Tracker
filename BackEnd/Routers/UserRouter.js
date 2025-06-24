@@ -21,12 +21,13 @@ UserRouter.post("/signup",async(req,res)=>{
 
         await user.save();
         const token=await user.getJWT();
-        res.cookie("token",token,{
+        res.cookie("token", token, {
             httpOnly: true,
-            secure: false, // true in production with HTTPS
-            sameSite: "Lax",
-            maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-          });
+            secure: true,           // ✅ Required for HTTPS (on production)
+            sameSite: "None",       // ✅ Required for cross-site cookies
+            maxAge: 24 * 60 * 60 * 1000
+        });
+        
         res.status(200).json({msg:"Signed In successfully",data:{_id:user._id,emailId:user.emailId}})
 
     }
@@ -53,12 +54,13 @@ UserRouter.post("/login",async(req,res)=>{
         if(!check)
             return res.status(500).send("Incorrect Password");
         const token=await existing.getJWT();
-        res.cookie("token",token,{
+        res.cookie("token", token, {
             httpOnly: true,
-            secure: false, // true in production with HTTPS
-            sameSite: "Lax",
-            maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-          });
+            secure: true,           // ✅ Required for HTTPS (on production)
+            sameSite: "None",       // ✅ Required for cross-site cookies
+            maxAge: 24 * 60 * 60 * 1000
+        });
+        
         res.status(200).json({
             msg: "Logged In successfully",
             data: { _id: existing._id, emailId: existing.emailId }
