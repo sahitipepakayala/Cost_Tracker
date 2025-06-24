@@ -15,7 +15,7 @@ function Signup() {
     const handlesignup=async(e)=>{
         e.preventDefault();
         try{
-            const res=await axios.post(`${backendUrl}/user/signup`,{emailId,password},{withCredentials:true});
+            const res=await axios.post(`https://cost-tracker-vmi7.onrender.com/user/signup`,{emailId,password},{withCredentials:true});
             dispatch(addUser(res.data));
             Swal.fire({
                 title: "Successfully Signed In",

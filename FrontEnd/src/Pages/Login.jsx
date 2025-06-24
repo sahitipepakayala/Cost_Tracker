@@ -18,7 +18,7 @@ function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${backendUrl}/user/login`, { emailId, password }, { withCredentials: true });
+      const res = await axios.post(`https://cost-tracker-vmi7.onrender.com/user/login`, { emailId, password }, { withCredentials: true });
       dispatch(addUser(res.data));
       Swal.fire({
         title: "Successfully Logged In",

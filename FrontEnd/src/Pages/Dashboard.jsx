@@ -22,7 +22,7 @@ const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const handleAddItem=async(item,price)=>{
     try{
-        await axios.post(`${backendUrl}/product/newProduct`,{item,price},{withCredentials:true});
+        await axios.post(`https://cost-tracker-vmi7.onrender.com/product/newProduct`,{item,price},{withCredentials:true});
         fetchProducts();
         setItem("");
         setPrice(0);
@@ -42,7 +42,7 @@ const handleAddItem=async(item,price)=>{
 
 const handleAddDes=async(description,cost)=>{
     try{
-        await axios.post(`${backendUrl}/extra/newExtra`,{description,cost},{withCredentials:true});
+        await axios.post(`https://cost-tracker-vmi7.onrender.com/extra/newExtra`,{description,cost},{withCredentials:true});
         fetchExtras();
         setDescription("");
         setCost(0)
@@ -61,7 +61,7 @@ const handleAddDes=async(description,cost)=>{
 }
 const handleItem=async (Id)=>{
     try{
-       await axios.delete(`${backendUrl}/product/delete/${Id}`,{withCredentials:true});
+       await axios.delete(`https://cost-tracker-vmi7.onrender.com/product/delete/${Id}`,{withCredentials:true});
        fetchProducts();
        Swal.fire({
         position: "bottom",
@@ -78,7 +78,7 @@ const handleItem=async (Id)=>{
 
 const handleExtra=async(Id)=>{
     try{
-        await axios.delete(`${backendUrl}/extra/delete/${Id}`,{withCredentials:true});
+        await axios.delete(`https://cost-tracker-vmi7.onrender.com/extra/delete/${Id}`,{withCredentials:true});
         fetchExtras();
         Swal.fire({
             position: "bottom",
@@ -98,7 +98,7 @@ const handleExtra=async(Id)=>{
     const handleSignOut=async(e)=>{
         e.preventDefault();
         try{
-            await axios.get(`${backendUrl}/user/logout`)
+            await axios.get(`https://cost-tracker-vmi7.onrender.com/user/logout`)
             dispatch(removeUser())
             Swal.fire({
                 position: "top-end",
@@ -117,7 +117,7 @@ const handleExtra=async(Id)=>{
   
     async function fetchProducts() {
         try{
-            const prod=await axios.get(`${backendUrl}/product/getProducts`,{withCredentials:true});
+            const prod=await axios.get(`https://cost-tracker-vmi7.onrender.com/product/getProducts`,{withCredentials:true});
             setProducts(prod.data);
         }
         catch(error){
@@ -127,7 +127,7 @@ const handleExtra=async(Id)=>{
     }
     async function fetchExtras() {
         try{
-            const prod=await axios.get(`${backendUrl}/extra/getExtras`,{withCredentials:true});
+            const prod=await axios.get(`https://cost-tracker-vmi7.onrender.com/extra/getExtras`,{withCredentials:true});
             setExtras(prod.data);
         }
         catch(error){
@@ -138,7 +138,7 @@ const handleExtra=async(Id)=>{
 
     async function itemLH(){
         try{
-            const items=await axios.get(`${backendUrl}/product/low_to_high`,{withCredentials:true});
+            const items=await axios.get(`https://cost-tracker-vmi7.onrender.com/product/low_to_high`,{withCredentials:true});
             setProducts(items.data.products);
         }
         catch(error){
@@ -147,7 +147,7 @@ const handleExtra=async(Id)=>{
     }
     async function itemHL(){
         try{
-            const items=await axios.get(`${backendUrl}/product/high_to_low` ,{withCredentials:true});
+            const items=await axios.get(`https://cost-tracker-vmi7.onrender.com/product/high_to_low` ,{withCredentials:true});
             setProducts(items.data.products);
            
         }
@@ -159,7 +159,7 @@ const handleExtra=async(Id)=>{
 
     async function descLH(){
         try{
-            const items=await axios.get(`${backendUrl}/extra/low_to_high`,{withCredentials:true});
+            const items=await axios.get(`https://cost-tracker-vmi7.onrender.com/extra/low_to_high`,{withCredentials:true});
             setExtras(items.data.products);
          
         }
@@ -169,7 +169,7 @@ const handleExtra=async(Id)=>{
     }
     async function descHL(){
         try{
-            const items=await axios.get(`${backendUrl}/extra/high_to_low`,{withCredentials:true});
+            const items=await axios.get(`https://cost-tracker-vmi7.onrender.com/extra/high_to_low`,{withCredentials:true});
             setExtras(items.data.products);
         }
         catch(error){
